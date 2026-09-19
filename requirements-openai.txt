@@ -1,0 +1,3 @@
+# Optional OpenAI backend for the measured retrieval benchmark.
+# Do not install requirements-local.txt when using this backend.
+openai==3.13.0

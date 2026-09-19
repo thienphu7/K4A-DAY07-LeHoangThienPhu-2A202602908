@@ -1,0 +1,150 @@
+Embedding backend: text-embedding-3-small + sha256 cache
+=== Chunk statistics (embedding-independent) ===
+fixed_size: count=16 avg_length=412.8
+by_sentences: count=21 avg_length=289.0
+recursive: count=18 avg_length=337.8
+heading: count=25 avg_length=245.0
+
+=== Personal benchmark: Lê Hoàng Thiên Phú ===
+Strategy: FixedSizeChunker(chunk_size=500, overlap=50)
+Loaded 16 chunks from 6 documents
+
+Q1: How many Short Loan items may be borrowed at once, and how long does each loan last?
+Gold: Only two Short Loan items may be borrowed at once, and each Short Loan lasts 3 hours.
+Filter: none | doc_rank=1 content_rank=1 retrieval_points=2/2
+  1. score=0.7756 doc_id=borrowing-limits chunk_id=borrowing-limits#0 content_match=True
+     # Limits on borrowing  ## Standard limits  General Collection loans are unlimited in number. Their loan period is at least 7 days and may extend to 365 days, subject to recall cond...
+  2. score=0.6048 doc_id=borrowing-terms chunk_id=borrowing-terms#0 content_match=False
+     # Borrowing terms and conditions  ## General Collection loans  The guaranteed borrowing period is 7 days. A borrower may keep an item for as long as 365 days only while all of thes...
+  3. score=0.5134 doc_id=borrowing-terms chunk_id=borrowing-terms#1 content_match=False
+     hortens the original loan period.  ## Overdue, lost, or damaged items  An item is marked lost when it is at least 32 days overdue, is returned damaged, or cannot be located by the ...
+Agent marker match: False
+Agent answer: Chỉ có thể mượn tối đa hai món Short Loan cùng lúc, và mỗi món Short Loan có thời hạn mượn là 3 giờ [1].
+
+Q2: Under what conditions may a General Collection item be kept for up to 365 days?
+Gold: There must be no recall, the borrower's enrolment or membership must remain current, and the borrowing record must have no fines or blocks.
+Filter: none | doc_rank=1 content_rank=1 retrieval_points=2/2
+  1. score=0.5479 doc_id=borrowing-terms chunk_id=borrowing-terms#0 content_match=True
+     # Borrowing terms and conditions  ## General Collection loans  The guaranteed borrowing period is 7 days. A borrower may keep an item for as long as 365 days only while all of thes...
+  2. score=0.5019 doc_id=requesting-items chunk_id=requesting-items#2 content_match=False
+      to 3 days; other pickup locations require more time.  ## Collection and digitisation  An item remains on the hold shelf for 7 days after the availability email is sent.  To reques...
+  3. score=0.4652 doc_id=requesting-items chunk_id=requesting-items#0 content_match=False
+     # Requesting items  ## Transfers and recalls  A General Collection item can be transferred between the Conservatorium Library and the Camperdown/Darlington campus. Items already on...
+Agent marker match: True
+Agent answer: Một mục trong Bộ Sưu Tập Chung (General Collection) có thể được giữ trong vòng tối đa 365 ngày khi tất cả các điều kiện sau đây được thỏa mãn:
+
+- Không có khách hàng nào khác yêu cầu trả lại mục đó (no other client has recalled the item);
+- Người mượn vẫn đang là sinh viên hoặc thành viên hiện hành của Đại học Sydney (the borrower's University of Sydney enrolment or membership remains current);
+- Hồ sơ mượn không có tiền phạt hoặc lệnh chặn (the borrowing record has no fines or blocks) [1].
+
+Q3: How do I request a digital copy of a journal article or book chapter?
+Gold: Sign in to the catalogue, select the journal and location, choose Request a digital copy, complete the form and copyright acknowledgement, and submit the request.
+Filter: none | doc_rank=2 content_rank=2 retrieval_points=1/2
+  1. score=0.4827 doc_id=resource-sharing-staff chunk_id=resource-sharing-staff#1 content_match=False
+     unavailable, the search can be expanded to items shared by other institutions. A physical copy can be collected from a selected University of Sydney Library, while a requested digi...
+  2. score=0.4635 doc_id=requesting-items chunk_id=requesting-items#2 content_match=True
+      to 3 days; other pickup locations require more time.  ## Collection and digitisation  An item remains on the hold shelf for 7 days after the availability email is sent.  To reques...
+  3. score=0.4597 doc_id=requesting-items chunk_id=requesting-items#1 content_match=False
+      borrower is then told to return it within 7 days. After return, the requester receives an email and the item is placed on the hold shelf.  ## Library Store requests  An item held ...
+Agent marker match: False
+Agent answer: Để yêu cầu một bản sao kỹ thuật số của bài báo tạp chí hoặc chương sách, bạn cần đăng nhập vào danh mục thư viện, chọn tạp chí và địa điểm, sau đó chọn “Request a digital copy,” điền vào biểu mẫu và xác nhận bản quyền, rồi gửi yêu cầu. Bản sao hoàn chỉnh sẽ được gửi qua email [2].
+
+Q4: Where must a Short Loan item be returned?
+Gold: A Short Loan item must be returned to the location from which it was borrowed.
+Filter: none | doc_rank=2 content_rank=2 retrieval_points=1/2
+  1. score=0.5508 doc_id=borrowing-limits chunk_id=borrowing-limits#0 content_match=False
+     # Limits on borrowing  ## Standard limits  General Collection loans are unlimited in number. Their loan period is at least 7 days and may extend to 365 days, subject to recall cond...
+  2. score=0.5192 doc_id=returning-items chunk_id=returning-items#0 content_match=True
+     # Returning items  ## Return chutes  Every University of Sydney library location has a return chute. The chutes at Fisher, SciTech, and Camden Commons operate 24 hours a day, 7 day...
+  3. score=0.4877 doc_id=requesting-items chunk_id=requesting-items#1 content_match=False
+      borrower is then told to return it within 7 days. After return, the requester receives an email and the item is placed on the hold shelf.  ## Library Store requests  An item held ...
+Agent marker match: True
+Agent answer: A Short Loan item must be returned to the same location from which it was borrowed [2].
+
+Q5: How many items can I borrow through Resource Sharing in a calendar year, and who is eligible?
+Gold: Postgraduate and honours students are eligible, and eligible students may borrow up to 100 items from other institutions per calendar year.
+Filter: {'audience': 'student'} | doc_rank=1 content_rank=1 retrieval_points=2/2
+  1. score=0.6819 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.4041 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=False
+     he University collection. If the required item is absent, the student selects the option to include items shared by other libraries, chooses an available physical or digital option...
+  3. score=0.3474 doc_id=resource-sharing-students chunk_id=resource-sharing-students#2 content_match=False
+      the actual period. These loans generally cannot be renewed. Items from Australian libraries usually arrive in 7 to 10 business days; international items can take up to 4 weeks....
+Agent marker match: False
+Agent answer: Bạn có thể mượn tối đa 100 tài liệu từ các tổ chức khác nhau trong mỗi năm dương lịch thông qua dịch vụ Resource Sharing. Dịch vụ này chỉ dành cho sinh viên cao học và sinh viên danh dự (honours students) [1].
+
+Personal retrieval total: 8/10
+
+=== Required Q5 metadata-filter A/B across strategies ===
+
+[fixed_size] WITH filter {'audience': 'student'}
+  1. score=0.6819 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.4041 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=False
+     he University collection. If the required item is absent, the student selects the option to include items shared by other libraries, chooses an available physical or digital option...
+  3. score=0.3474 doc_id=resource-sharing-students chunk_id=resource-sharing-students#2 content_match=False
+      the actual period. These loans generally cannot be renewed. Items from Australian libraries usually arrive in 7 to 10 business days; international items can take up to 4 weeks....
+[fixed_size] WITHOUT filter
+  1. score=0.6819 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.6558 doc_id=resource-sharing-staff chunk_id=resource-sharing-staff#0 content_match=False
+     # Resource sharing for staff  ## Eligibility and allowance  University of Sydney staff are eligible for Resource Sharing. Staff may borrow up to 100 items from other institutions i...
+  3. score=0.5302 doc_id=borrowing-limits chunk_id=borrowing-limits#0 content_match=False
+     # Limits on borrowing  ## Standard limits  General Collection loans are unlimited in number. Their loan period is at least 7 days and may extend to 365 days, subject to recall cond...
+A/B ranks: content_with=1, content_without=1, identical_top3=False
+
+[by_sentences] WITH filter {'audience': 'student'}
+  1. score=0.6947 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.3804 doc_id=resource-sharing-students chunk_id=resource-sharing-students#2 content_match=False
+     ## Timing and renewals  An external-library loan normally lasts at least 3 weeks, although the supplying institution sets the actual period. These loans generally cannot be renewed...
+  3. score=0.3307 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=False
+     ## Request process  The student signs in to the Library catalogue and searches the University collection. If the required item is absent, the student selects the option to include ...
+[by_sentences] WITHOUT filter
+  1. score=0.6947 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.6739 doc_id=resource-sharing-staff chunk_id=resource-sharing-staff#0 content_match=False
+     # Resource sharing for staff  ## Eligibility and allowance  University of Sydney staff are eligible for Resource Sharing. Staff may borrow up to 100 items from other institutions i...
+  3. score=0.5580 doc_id=borrowing-limits chunk_id=borrowing-limits#0 content_match=False
+     # Limits on borrowing  ## Standard limits  General Collection loans are unlimited in number. Their loan period is at least 7 days and may extend to 365 days, subject to recall cond...
+A/B ranks: content_with=1, content_without=1, identical_top3=False
+
+[recursive] WITH filter {'audience': 'student'}
+  1. score=0.6867 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.3961 doc_id=resource-sharing-students chunk_id=resource-sharing-students#2 content_match=False
+     An external-library loan normally lasts at least 3 weeks, although the supplying institution sets the actual period. These loans generally cannot be renewed. Items from Australian ...
+  3. score=0.3829 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=False
+     The student signs in to the Library catalogue and searches the University collection. If the required item is absent, the student selects the option to include items shared by othe...
+[recursive] WITHOUT filter
+  1. score=0.6867 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=True
+     # Resource sharing for eligible students  ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students m...
+  2. score=0.6662 doc_id=resource-sharing-staff chunk_id=resource-sharing-staff#0 content_match=False
+     # Resource sharing for staff  ## Eligibility and allowance  University of Sydney staff are eligible for Resource Sharing. Staff may borrow up to 100 items from other institutions i...
+  3. score=0.5311 doc_id=borrowing-limits chunk_id=borrowing-limits#0 content_match=False
+     # Limits on borrowing  ## Standard limits  General Collection loans are unlimited in number. Their loan period is at least 7 days and may extend to 365 days, subject to recall cond...
+A/B ranks: content_with=1, content_without=1, identical_top3=False
+
+[heading] WITH filter {'audience': 'student'}
+  1. score=0.6835 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=True
+     ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students may borrow up to 100 items from other insti...
+  2. score=0.6608 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=False
+     # Resource sharing for eligible students...
+  3. score=0.3804 doc_id=resource-sharing-students chunk_id=resource-sharing-students#3 content_match=False
+     ## Timing and renewals  An external-library loan normally lasts at least 3 weeks, although the supplying institution sets the actual period. These loans generally cannot be renewed...
+[heading] WITHOUT filter
+  1. score=0.6835 doc_id=resource-sharing-students chunk_id=resource-sharing-students#1 content_match=True
+     ## Eligibility and allowance  The Resource Sharing service is available to postgraduate students and honours students. Eligible students may borrow up to 100 items from other insti...
+  2. score=0.6608 doc_id=resource-sharing-students chunk_id=resource-sharing-students#0 content_match=False
+     # Resource sharing for eligible students...
+  3. score=0.6314 doc_id=resource-sharing-staff chunk_id=resource-sharing-staff#1 content_match=False
+     ## Eligibility and allowance  University of Sydney staff are eligible for Resource Sharing. Staff may borrow up to 100 items from other institutions in each calendar year. Requests...
+A/B ranks: content_with=1, content_without=1, identical_top3=False
+
+=== Failure analysis candidates ===
+Q3 failed: How do I request a digital copy of a journal article or book chapter?
+Cause: the gold document may be retrieved while the answer-bearing chunk is absent or ranked too low; topic similarity alone does not guarantee answer density.
+Proposed fix: use semantic embeddings, retain meaningful boundaries/headings, and add targeted metadata or overlap where the answer crosses a chunk boundary.
+Q4 failed: Where must a Short Loan item be returned?
+Cause: the gold document may be retrieved while the answer-bearing chunk is absent or ranked too low; topic similarity alone does not guarantee answer density.
+Proposed fix: use semantic embeddings, retain meaningful boundaries/headings, and add targeted metadata or overlap where the answer crosses a chunk boundary.
