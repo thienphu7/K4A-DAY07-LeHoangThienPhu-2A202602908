@@ -27,12 +27,12 @@
 
 | # | Tên tài liệu | Nguồn (Source URL) | Ngày lấy / Phiên bản | Số ký tự | Metadata đã gán |
 |---|--------------|------------|--------------------|----------|-----------------|
-| 1 | Limits on borrowing | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/limits-on-borrowing) | 2026-09-19 / `not-stated` | 960 | `audience=all`, `category=borrowing-limits`, `department=library`, `language=en` |
-| 2 | Borrowing terms and conditions | [University of Sydney Library](https://www.library.sydney.edu.au/about/governance/borrowing-terms-and-conditions) | 2026-09-19 / `not-stated` | 1.400 | `audience=all`, `category=borrowing-policy`, `department=library`, `language=en` |
-| 3 | Requesting items | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/requesting-items) | 2026-09-19 / `not-stated` | 1.575 | `audience=all`, `category=requests`, `department=library`, `language=en` |
-| 4 | Returning items | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/returning-items) | 2026-09-19 / `not-stated` | 1.195 | `audience=all`, `category=returns`, `department=library`, `language=en` |
-| 5 | Resource sharing for eligible students | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library) | 2026-09-19 / `not-stated` | 1.404 | `audience=student`, `category=resource-sharing`, `department=library`, `language=en` |
-| 6 | Resource sharing for staff | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library) | 2026-09-19 / `not-stated` | 1.291 | `audience=staff`, `category=resource-sharing`, `department=library`, `language=en` |
+| 1 | Limits on borrowing | `https://www.library.sydney.edu.au/support/borrowing/limits-on-borrowing` | 2026-09-19 / `not-stated` | 960 | `audience=all`, `category=borrowing-limits`, `department=library`, `language=en` |
+| 2 | Borrowing terms and conditions | `https://www.library.sydney.edu.au/about/governance/borrowing-terms-and-conditions` | 2026-09-19 / `not-stated` | 1.400 | `audience=all`, `category=borrowing-policy`, `department=library`, `language=en` |
+| 3 | Requesting items | `https://www.library.sydney.edu.au/support/borrowing/requesting-items` | 2026-09-19 / `not-stated` | 1.575 | `audience=all`, `category=requests`, `department=library`, `language=en` |
+| 4 | Returning items | `https://www.library.sydney.edu.au/support/borrowing/returning-items` | 2026-09-19 / `not-stated` | 1.195 | `audience=all`, `category=returns`, `department=library`, `language=en` |
+| 5 | Resource sharing for eligible students | `https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library` | 2026-09-19 / `not-stated` | 1.404 | `audience=student`, `category=resource-sharing`, `department=library`, `language=en` |
+| 6 | Resource sharing for staff | `https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library` | 2026-09-19 / `not-stated` | 1.291 | `audience=staff`, `category=resource-sharing`, `department=library`, `language=en` |
 
 Corpus có **6 tài liệu**, nằm trong yêu cầu 5–10 tài liệu của lab. `sources.csv` có đủ 6 `doc_id` tương ứng và metadata của mỗi file được trải xuống mọi chunk khi nạp benchmark.
 
