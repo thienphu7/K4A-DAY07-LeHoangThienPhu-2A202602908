@@ -14,31 +14,39 @@
 
 ### Chủ đề (Domain) & Lý Do Chọn
 
-**Chủ đề:** [ví dụ: Customer support FAQ, Luật Việt Nam, công thức nấu ăn, ...]
+**Chủ đề:** Quy định mượn và yêu cầu tài liệu của Thư viện University of Sydney (K4-L3A).
 
 **Tại sao nhóm chọn chủ đề này?**
-> *Viết 2-3 câu:*
+> Đây là nhóm quy định đại học công khai, có nhiều điều kiện, con số và mốc thời gian phù hợp để kiểm tra chất lượng retrieval. Nguồn chính thức cũng phân biệt người học và nhân viên trong dịch vụ Resource Sharing, nhờ đó trường `audience` tạo ra phép thử metadata filter có ý nghĩa thay vì chỉ tồn tại trên schema.
 
 ### Danh sách tài liệu (Data Inventory)
 
 | # | Tên tài liệu | Nguồn (Source URL) | Ngày lấy / Phiên bản | Số ký tự | Metadata đã gán |
 |---|--------------|------------|--------------------|----------|-----------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Limits on borrowing | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/limits-on-borrowing) | 2026-09-19 / `not-stated` | 960 | `audience=all`, `category=borrowing-limits`, `department=library`, `language=en` |
+| 2 | Borrowing terms and conditions | [University of Sydney Library](https://www.library.sydney.edu.au/about/governance/borrowing-terms-and-conditions) | 2026-09-19 / `not-stated` | 1.400 | `audience=all`, `category=borrowing-policy`, `department=library`, `language=en` |
+| 3 | Requesting items | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/requesting-items) | 2026-09-19 / `not-stated` | 1.575 | `audience=all`, `category=requests`, `department=library`, `language=en` |
+| 4 | Returning items | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/returning-items) | 2026-09-19 / `not-stated` | 1.195 | `audience=all`, `category=returns`, `department=library`, `language=en` |
+| 5 | Resource sharing for eligible students | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library) | 2026-09-19 / `not-stated` | 1.404 | `audience=student`, `category=resource-sharing`, `department=library`, `language=en` |
+| 6 | Resource sharing for staff | [University of Sydney Library](https://www.library.sydney.edu.au/support/borrowing/request-an-item-from-outside-our-library) | 2026-09-19 / `not-stated` | 1.291 | `audience=staff`, `category=resource-sharing`, `department=library`, `language=en` |
 
 **Danh sách kiểm tra quản trị dữ liệu (Data governance checklist):**
-- [ ] Tập tài liệu (Corpus) chỉ chứa nguồn công khai/được phép dùng và không chứa dữ liệu cá nhân, thông tin đăng nhập hoặc tài liệu nội bộ.
-- [ ] Mỗi tài liệu có `source_url`, `retrieved_at`, `document_version` (hoặc ngày hiệu lực) trong metadata.
+- [x] Tập tài liệu (Corpus) chỉ chứa nguồn công khai/được phép dùng và không chứa dữ liệu cá nhân, thông tin đăng nhập hoặc tài liệu nội bộ.
+- [x] Mỗi tài liệu có `source_url`, `retrieved_at`, `document_version` (hoặc ngày hiệu lực) trong metadata.
 
 ### Cấu trúc Metadata (Metadata Schema)
 
 | Trường metadata | Kiểu | Ví dụ giá trị | Tại sao hữu ích cho truy xuất (retrieval)? |
 |----------------|------|---------------|-------------------------------|
-| | | | |
-| | | | |
+| `doc_id` | string | `resource-sharing-students` | Định danh ổn định, duy nhất; liên kết file nguồn với chunk và dòng trong `sources.csv`. |
+| `title` | string | `Resource sharing for eligible students` | Bổ sung tín hiệu ngữ nghĩa và giúp hiển thị nguồn dễ đọc. |
+| `source_url` | URL string | `https://www.library.sydney.edu.au/...` | Truy vết câu trả lời về nguồn chính thức để kiểm chứng. |
+| `retrieved_at` | date (`YYYY-MM-DD`) | `2026-09-19` | Cho biết thời điểm chụp dữ liệu, hữu ích khi quy định thay đổi. |
+| `document_version` | string | `not-stated` | Lưu phiên bản khi nguồn công bố; dùng `not-stated` để tránh tự đặt phiên bản. |
+| `audience` | enum string | `student`, `staff`, `all` | Cho phép lọc đúng đối tượng; đặc biệt tách điều kiện Resource Sharing của sinh viên và nhân viên. |
+| `department` | string | `library` | Giới hạn retrieval theo đơn vị cung cấp dịch vụ khi corpus được mở rộng. |
+| `category` | string | `returns`, `requests`, `resource-sharing` | Thu hẹp kết quả theo loại quy định hoặc thao tác cần tra cứu. |
+| `language` | ISO-like string | `en` | Hỗ trợ chọn embedder và lọc ngôn ngữ cho corpus đa ngữ. |
 
 ---
 
